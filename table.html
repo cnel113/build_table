@@ -1,0 +1,57 @@
+<h1>Mountains</h1>
+
+<div id="mountains"></div>
+
+<script>
+  const MOUNTAINS = [
+    {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+    {name: "Everest", height: 8848, place: "Nepal"},
+    {name: "Mount Fuji", height: 3776, place: "Japan"},
+    {name: "Vaalserberg", height: 323, place: "Netherlands"},
+    {name: "Denali", height: 6168, place: "United States"},
+    {name: "Popocatepetl", height: 5465, place: "Mexico"},
+    {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+  ];
+
+  // Your code here
+  
+  function createTable(tableData) { 
+    //make <table>
+    //make <tr> for headers and add as child of table
+    // make and add <th> objects with headers from object keys
+    // make <tr> for entries
+    // Make and add <td> objects with the data from the objects
+    //Add the whole table as a child of the Mountain <div>
+   
+    let table = document.createElement("TABLE");
+    let header_box = document.createElement("tr"); //makes row for headers
+    //making from scratch, not filling in existing HMTL
+    let headers = Object.keys(tableData[0]);
+    for (let counter = 0; counter < headers.length; counter++){
+      const header = document.createElement("th");
+      const header_text = document.createTextNode(headers[counter]);
+      header.appendChild(header_text);
+      header_box.appendChild(header);
+    }
+    table.appendChild(header_box);
+    let table_container = document.getElementById("mountains");
+  	table_container.appendChild(table);
+    
+    for (let row = 0; row < tableData.length; row++) {
+      let data = Object.values(tableData[row]);
+      console.log(data);
+      const data_row_box = document.createElement("tr");
+      for (let column = 0; column < headers.length; column++){
+        const data_box = document.createElement("td");
+        const data_text = document.createTextNode(tableData[row][column]); 
+        data_box.appendChild(data_text);
+        data_row_box.appendChild(data_box);
+      }
+    }
+    
+    
+  }
+    
+  createTable(MOUNTAINS);
+  
+</script>
